@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body bgcolor="violet">
+
+   <form action="#" method="POST">
+    {% csrf_token %}
+
+      <div class="payment-page">
+          <div class="heading1">
+                 <h1 style="text-align:center;">Proceed to Payment</h1>
+                 <h2 style="text-align:center;">{{customer.Name}}</h2>
+                 <button  style="background-color:purple; margin-left:580px;" type="submit" class="btn btn-primary mr-2" >Make Payment</button>
+          </div>
+
+        <!-- Add more content here -->
+      </div>
+  </form>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"
+         data-key="rzp_test_A7vwIAzI1n64cC"
+         data-amount="{{payy_str}}"
+         data-currency="INR"
+         data-order_id="{{payment.order_id}}"
+         data-buttontext=""
+         data-name="Furniture"
+         data-description="Your description"
+         data-image=""
+         data-prefill.name="abc"
+         data-prefill.email="abc@gmail.com"
+         data-theme.color="#4badeb">
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <h1>Add Products</h1>
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Products</h4>
+                  <p class="card-description">
+                    Add Products
+                  </p>
+                  <form method ="post" action="{% url 'save_product' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                      <div class="form-group">
+                      <label for="exampleSelectGender">Product Category</label>
+                        <select class="form-control" id="exampleSelectGender" name="pcat">
+                          {% for i in prod %}
+                          <option>{{i.Category_Name}}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Product Name</label>
+                      <input type="text" class="form-control" name="pname" id="exampleInputEmail3" placeholder="Product Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Quantity</label>
+                      <input type="text" class="form-control" name="pquant" id="exampleInputPassword4" placeholder="Quantity">
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleInputName1">Price</label>
+                      <input type="text" class="form-control" name="price" id="exampleInputName1" placeholder="Price">
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleInputOrgin2">Country of Orgin</label>
+                      <input type="text" class="form-control" name="orgin" id="exampleInputOrgin2" placeholder="Country of Orgin">
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleInputCity1">Manufactured By</label>
+                      <input type="text" class="form-control"  name="manuf" id="exampleInputCity1" placeholder="Manufactured By">
+                    </div>
+
+                    <div class="form-group">
+                      <label>File upload</label>
+                      <input type="file" name="img">
+<!--                      <div class="input-group col-xs-12">-->
+<!--                        <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">-->
+<!--                        <span class="input-group-append">-->
+<!--                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>-->
+<!--                        </span>-->
+<!--                      </div>-->
+                    </div>
+                    <div class="form-group">
+                      <label>File upload</label>
+                      <input type="file" name="img2">
+                    </div>
+                      <div class="form-group">
+                      <label>File upload</label>
+                      <input type="file" name="img3">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control"  name="desc" id="exampleTextarea1" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+              {% if messages %}
+                {% for i in messages %}
+                 {% if i.tags == 'success' %}
+                  <script>
+                      swal('{{i}}', '', 'success');
+                  </script>
+                {% elif i.tags == 'error' %}
+                    <script>
+                        swal('{{i}}', '', 'error');
+                    </script>
+                {% elif i.tags == 'warning' %}
+                     <script>
+                         swal('{{i}}', '', 'warning');
+                     </script>
+                {% else %}
+                      <script>
+                          swal('{{i}}', '', 'info');
+                      </script>
+                   {% endif %}
+                  {% endfor %}
+                {% endif %}
+</body>
+</html>
+{% endblock %}
